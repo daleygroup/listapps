@@ -57,5 +57,6 @@ Every run reads this first and updates it last. Keep it short and current.
 ---
 
 ## Run log (newest first)
+- 2026-10-21 Build run 2: no unblocked work. M1-4 through M1-9 all wait on D-003 (and D-004, D-005). Checked main: lint, typecheck, 45 tests, build all pass. No reply from Joseph yet; WAITING email for D-003 already sent today, so none sent. Next: M1-4 migrations once D-003 is APPROVED. Nothing broken.
 - 2026-10-21 Build run 1: finished Milestone 0 (Next.js 16 scaffold, lint/format/typecheck/test/build, CI green on GitHub, reversible migration runner, local Postgres RLS harness, design tokens). M1-1 schema proposal written (D-003 PENDING), D-007 added. M1-2 resolvers and M1-3 app shell with switcher done, M1-10 verify checklist written. Next: everything left in Milestone 1 waits on D-003 (plus D-004, D-005 for auth and email). WAITING email sent to Joseph for D-003. Nothing broken.
 - 2026-10-21 Setup session: repo initialized, CLAUDE.md updated with unattended-run rules (section 0b) and the revised deadline, planning docs 01 through 09 added, backlog written. Next: M0-1.
