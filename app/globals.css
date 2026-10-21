@@ -1,0 +1,33 @@
+@import "tailwindcss";
+@import "./tokens.css";
+
+/* Map design tokens into Tailwind so utilities read from the tokens. */
+@theme inline {
+  --color-surface: var(--la-color-surface);
+  --color-surface-muted: var(--la-color-surface-muted);
+  --color-ink: var(--la-color-ink);
+  --color-ink-muted: var(--la-color-ink-muted);
+  --color-border: var(--la-color-border);
+  --color-primary: var(--la-color-primary);
+  --color-primary-ink: var(--la-color-primary-ink);
+  --color-danger: var(--la-color-danger);
+  --color-success: var(--la-color-success);
+  --color-warning: var(--la-color-warning);
+
+  --font-sans: var(--la-font-sans);
+  --font-mono: var(--la-font-mono);
+
+  --radius-control: var(--la-radius-control);
+  --radius-card: var(--la-radius-card);
+  --radius-pill: var(--la-radius-pill);
+
+  --spacing-gutter: var(--la-space-gutter);
+  --spacing-section: var(--la-space-section);
+  --spacing-tap: var(--la-space-tap);
+}
+
+body {
+  background: var(--la-color-surface);
+  color: var(--la-color-ink);
+  font-family: var(--la-font-sans);
+}

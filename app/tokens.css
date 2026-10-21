@@ -1,0 +1,49 @@
+/*
+ * ListApps design tokens. The single source for color, font, radius, and spacing.
+ * Components use the Tailwind utilities these tokens generate (bg-surface, text-ink,
+ * rounded-card, ...). No hardcoded color values in components.
+ *
+ * Later, platform_theme and account_theme overrides will set these same variables
+ * at runtime (see CLAUDE.md section 4, Theming). Keep names stable.
+ */
+:root {
+  /* Color */
+  --la-color-surface: #ffffff;
+  --la-color-surface-muted: #f4f5f7;
+  --la-color-ink: #16181d;
+  --la-color-ink-muted: #5b6170;
+  --la-color-border: #dde0e6;
+  --la-color-primary: #1f4fd1;
+  --la-color-primary-ink: #ffffff;
+  --la-color-danger: #b42318;
+  --la-color-success: #067647;
+  --la-color-warning: #b54708;
+
+  /* Font */
+  --la-font-sans:
+    ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  --la-font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  /* Radius */
+  --la-radius-control: 0.5rem;
+  --la-radius-card: 0.75rem;
+  --la-radius-pill: 9999px;
+
+  /* Spacing (layout rhythm; Tailwind's numeric scale still applies) */
+  --la-space-gutter: 1rem;
+  --la-space-section: 1.5rem;
+  --la-space-tap: 2.75rem; /* minimum one-thumb tap target */
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --la-color-surface: #0f1115;
+    --la-color-surface-muted: #181b21;
+    --la-color-ink: #eceef2;
+    --la-color-ink-muted: #a0a6b3;
+    --la-color-border: #2a2f38;
+    --la-color-primary: #6d8ff0;
+    --la-color-primary-ink: #0f1115;
+  }
+}
