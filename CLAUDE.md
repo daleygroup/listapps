@@ -108,7 +108,7 @@ Every new table must satisfy all of these before the migration is written:
 - [ ] Applied the shared-versus-app test above and stated the result out loud.
 - [ ] Has an `id` of type `uuid` with a default.
 - [ ] Has `created_at` and `updated_at` as `timestamptz`.
-- [ ] Has `account_id uuid not null references accounts(id)` plus a denormalized `account_path`, **unless** it is a platform-global table (`users`, `accounts`, `applications`, `platform_staff`, `properties`).
+- [ ] Has `account_id uuid not null references accounts(id)` plus a denormalized `account_path`, **unless** it is a platform-global table (`users`, `accounts`, `applications`, `platform_staff`, `properties`, plus `brokerages`, `agent_profiles`, `role_permissions`, `platform_theme`, `impersonation_sessions` per D-003 Q1).
 - [ ] Has Row Level Security **enabled**, with an explicit policy. A table without RLS is a data breach with a delay.
 - [ ] Has an index on `account_id`, a GiST index on `account_path`, and an index on every foreign key.
 - [ ] Migration file is numbered, committed, and reversible.

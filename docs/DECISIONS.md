@@ -16,14 +16,14 @@ Format: ID, status, date, the question in plain language, options, recommendatio
 - When a run has to stop and wait on him, it emails joseph@dealwithdaley.com (only him) with `[ListApps WAITING]` or `[ListApps URGENT]` in the subject and a link to the stopped session.
 
 ## D-003 Milestone 1 schema
-- **Status:** PENDING (proposal written 2026-10-21, waiting on Joseph)
+- **Status:** APPROVED by Joseph, 2026-10-21, as written including the Q1 to Q3 recommendations
 - **Question:** Approve the 17-table Milestone 1 schema in `docs/proposals/001-milestone-1-schema.md` so migrations can be written. Part 1 of the proposal is a one-page plain-English summary.
 - **Three small questions folded in (details in Part 5 of the proposal):**
   - Q1: Five more tables are platform-wide rather than per office: the brokerage library, agent profiles (they belong to the person), and ListApps' own permission rulebook, theme, and staff log. Recommendation: approve.
   - Q2: An agent's personal account sits outside the office tree, so nobody above them has authority over it. Recommendation: approve.
   - Q3: A subscription on the team you belong to covers you directly; "includes descendants" only decides whether it flows further down. Recommendation: approve.
 - **Recommendation:** approve as written. Reply "D-003 approved" or list changes.
-- **Joseph's answer:** (waiting)
+- **Joseph's answer (2026-10-21, in session https://claude.ai/code/session_01NtLQdRAthxvEgDdBr758XT):** "003 approved." D-004, D-005, and D-007 were not part of this answer and stay PENDING.
 
 ## D-004 Development database for background runs
 - **Status:** PENDING
