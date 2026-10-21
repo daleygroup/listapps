@@ -19,4 +19,5 @@ jobs:
       - run: pnpm format:check
       - run: pnpm typecheck
       - run: pnpm test
+      - run: pnpm test:db
       - run: pnpm build
