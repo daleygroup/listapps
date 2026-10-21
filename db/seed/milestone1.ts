@@ -1,4 +1,4 @@
-import type { Sql } from "postgres";
+import type { Sql, TransactionSql } from "postgres";
 
 /**
  * Milestone 1 seed: the first tenant and a second, unrelated test brokerage.
@@ -117,7 +117,7 @@ export async function seedMilestone1(
   });
 }
 
-type Tx = Parameters<Parameters<Sql["begin"]>[0]>[0];
+type Tx = TransactionSql;
 
 async function findOrCreateBrokerage(
   tx: Tx,
