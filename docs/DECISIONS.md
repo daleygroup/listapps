@@ -16,8 +16,14 @@ Format: ID, status, date, the question in plain language, options, recommendatio
 - When a run has to stop and wait on him, it emails joseph@dealwithdaley.com (only him) with `[ListApps WAITING]` or `[ListApps URGENT]` in the subject and a link to the stopped session.
 
 ## D-003 Milestone 1 schema
-- **Status:** PENDING (proposal not written yet; see STATUS M1-1)
-- Approve the 17-table Milestone 1 schema in `docs/proposals/001-milestone-1-schema.md` before any migration is written.
+- **Status:** PENDING (proposal written 2026-10-21, waiting on Joseph)
+- **Question:** Approve the 17-table Milestone 1 schema in `docs/proposals/001-milestone-1-schema.md` so migrations can be written. Part 1 of the proposal is a one-page plain-English summary.
+- **Three small questions folded in (details in Part 5 of the proposal):**
+  - Q1: Five more tables are platform-wide rather than per office: the brokerage library, agent profiles (they belong to the person), and ListApps' own permission rulebook, theme, and staff log. Recommendation: approve.
+  - Q2: An agent's personal account sits outside the office tree, so nobody above them has authority over it. Recommendation: approve.
+  - Q3: A subscription on the team you belong to covers you directly; "includes descendants" only decides whether it flows further down. Recommendation: approve.
+- **Recommendation:** approve as written. Reply "D-003 approved" or list changes.
+- **Joseph's answer:** (waiting)
 
 ## D-004 Development database for background runs
 - **Status:** PENDING
@@ -33,3 +39,16 @@ Format: ID, status, date, the question in plain language, options, recommendatio
 ## D-006 OHDibs non-renewal notice date
 - **Status:** PENDING (Joseph checking the contract)
 - This date sets how hard the real build has to push toward the December target.
+
+## D-007 Default data policies when people or teams leave
+- **Status:** PENDING (not blocking anything yet; contacts arrive in a later milestone)
+- **Question 1, leads when an agent leaves:** the agent always keeps every contact they own, no exceptions. The only question is whether the office or team *also* keeps a copy of leads that came from office-generated sources (office listings, office-paid marketing), which the database calls `org_generated`.
+  - Option A: the account also keeps a copy of `org_generated` leads. Nobody loses anything; matches what most brokerage agreements already say.
+  - Option B: the account keeps no copy. Most agent-friendly; some brokers will object.
+  - Option C: no default; each office picks during setup and the choice is shown to agents when they accept an invite.
+  - **Recommendation:** C for the demo offices, with A pre-selected. The agent's own copy is guaranteed either way.
+- **Question 2, data when a whole team leaves an office:** does the team take its data, or does the office keep it?
+  - Option A: the team takes its data and the office keeps a copy of office-generated items.
+  - Option B: the office keeps everything and the team gets an export.
+  - **Recommendation:** A, and have it written into the customer agreement, since the software should enforce the contract, not invent it.
+- **Joseph's answer:** (waiting)
