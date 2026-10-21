@@ -3,10 +3,14 @@
 -- It lets RLS policies written against auth.uid() run unchanged in tests.
 
 create schema if not exists auth;
+-- Supabase installs extensions into their own schema.
+create schema if not exists extensions;
+grant usage on schema extensions to public;
 
 create table if not exists auth.users (
   id uuid primary key,
-  email text unique
+  email text unique,
+  raw_user_meta_data jsonb not null default '{}'::jsonb
 );
 
 create or replace function auth.uid() returns uuid

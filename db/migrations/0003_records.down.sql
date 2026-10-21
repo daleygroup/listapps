@@ -1,0 +1,13 @@
+drop trigger if exists zz_audit on public.users;
+drop trigger if exists zz_audit on public.brokerages;
+drop trigger if exists zz_audit on public.role_permissions;
+drop trigger if exists zz_audit on public.platform_staff;
+drop trigger if exists zz_audit on public.accounts;
+drop trigger if exists zz_audit on public.account_memberships;
+drop table public.events;
+drop table public.audit_logs;
+drop table public.impersonation_sessions;
+drop function app_private.audit_trigger();
+drop function app_private.changed_fields(jsonb, jsonb, text[]);
+drop function app_private.write_audit(uuid, text, text, uuid, jsonb, jsonb);
+drop function app_private.impersonation_before_write();
