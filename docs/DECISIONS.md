@@ -52,3 +52,11 @@ Format: ID, status, date, the question in plain language, options, recommendatio
   - Option B: the office keeps everything and the team gets an export.
   - **Recommendation:** A, and have it written into the customer agreement, since the software should enforce the contract, not invent it.
 - **Joseph's answer:** (waiting)
+
+## D-008 Invitation email must match the sign-in email
+- **Status:** PENDING (not blocking; built the strict way for now, easy to loosen)
+- **Question:** When someone opens an invitation link, must they sign in with the exact email address the invitation was sent to?
+- **Option A (built now):** yes. A forwarded link does nothing for anyone else. If an agent wants to use a different address (for example a personal Gmail for "Sign in with Google"), the inviter resends the invitation to that address.
+- **Option B:** anyone signed in who holds the link can accept it. Fewer support calls, but a forwarded or leaked link lets the wrong person into an office's data.
+- **Recommendation:** A. It costs an occasional resend and protects every office's data.
+- **Joseph's answer:** (waiting)

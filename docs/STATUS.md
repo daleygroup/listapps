@@ -23,7 +23,7 @@ Every run reads this first and updates it last. Keep it short and current.
 - [x] M1-3 App shell UI with the app switcher (mobile-first), driven by the entitlement resolver against in-memory fixture data. No database calls yet.
 - [x] M1-4 Migrations for the 17 tables with RLS, plus automated RLS tests against the local test database proving: a second brokerage's rows are invisible; authority flows down the tree, never up or sideways; `sales` staff cannot read contacts or listing content.
 - [ ] M1-5 *(blocked by D-004)* Supabase Auth wiring: email and password, password reset, session handling, "Sign in with Google" (basic scope).
-- [ ] M1-6 *(blocked by D-005 for sending; D-004 for real logins)* Invitations by email, accept flow.
+- [ ] M1-6 *(blocked by D-005 for sending; D-004 for real logins)* Invitations by email, accept flow. *(Service layer done and tested: `lib/services/invitations.ts` (create, resend with a fresh link, revoke, preview for the accept page, accept). Remaining: the invite and accept screens, which need M1-5, and sending the email, which needs D-005. Email-match rule is D-008.)*
 - [ ] M1-7 Impersonation for platform staff: banner, `impersonation_sessions` log, notification email queued. *(Database rules done in M1-4. Service layer done and tested: `lib/services/impersonation.ts` (start, elevate, step down, per-action check and log, end, expiry sweep, notice queue) plus the pure never-permitted rules in `impersonation-policy.ts`. Remaining: the banner, which needs M1-5, and actually sending the notice, which needs D-005.)*
 - [ ] M1-8 Offboarding workflow: membership removal, inventory, default transfer to next authority up, `ownership_transfers` rows, no deletes. *(Service layer done and tested: `lib/services/offboarding.ts`. Remaining: the hand-off screen, which needs M1-5.)*
 - [x] M1-9 Seed script for one brokerage (KW Metro South) with one team (The Daley Group), plus a second test brokerage named "Test Brokerage Two" (docs/M1-VERIFY.md uses that name). Names live only in the seed file.
@@ -43,6 +43,7 @@ Every run reads this first and updates it last. Keep it short and current.
 - D-005 Email sending service for invitations (Resend recommended)
 - D-006 OHDibs non-renewal notice date
 - D-007 Default data policies when agents or teams leave (not blocking yet)
+- D-008 Must the person accepting an invitation sign in with the exact email it was sent to? (built strict for now, not blocking)
 
 ---
 
@@ -55,11 +56,13 @@ Every run reads this first and updates it last. Keep it short and current.
 - Open technical items for the M1-4 build: how seat holders are recorded (the resolver accepts a `holdsSeat` callback; proposal 001 only has a `seats_used` counter), and whether `past_due` keeps access during a grace period (a business call, only matters once billing exists).
 - App placeholder pages are reachable by URL whether or not the user is entitled; route guarding arrives with authentication (M1-5).
 - Impersonation services write their audit rows with server privileges inside the same transaction as the RLS-checked change (`set local role authenticated`, then `reset role`), so an action and its log row always land together. One live session per staff member at a time, 5 to 240 minutes (default 60). The notice email wording is not written yet; it is customer-facing, so it will go to Joseph as a decision alongside D-005.
+- Invitations: only a SHA-256 hash of the link token is stored; the raw token is returned once to the caller that sends the email. Links last 7 days by default (1 hour to 30 days allowed), are single-use, and resending replaces the old link. Accepting is the only server-privileged step and records the person as the audit actor. Invitation events are written right after the RLS-checked change commits (same two-step pattern as offboarding).
 - The clickable demo prototype for October 30 is built and published outside this repo. Do not build prototype screens here.
 
 ---
 
 ## Run log (newest first)
+- 2026-10-21 Build run 4: M1-6 invitation service layer done (13 new DB tests: members and other brokerages cannot invite, admins cannot invite owners or brokers of record, authority flows down, only token hashes stored, forwarded links refused, expiry, contact-policy acknowledgement before joining, single-use and resend-replaces-link, revoke keeps the row). All gates green. Added D-008 (invite email matching). Next: nothing unblocked; screens wait on D-004 (M1-5), sending waits on D-005. No new email sent (run 3 already sent today's WAITING for D-004/D-005). Nothing broken.
 - 2026-10-21 Build run 3: M1-7 impersonation service layer done (26 new tests: customers and brokerage owners can never impersonate, staff can never be impersonated, sales and non-elevating support stay read-only, contacts export/password/email/billing/delete refused even elevated, every step logged with the session id, notices queued on end and on expiry). All gates green. WAITING email sent to Joseph for D-004 and D-005. Next: nothing unblocked; M1-5, M1-6, the M1-7 banner and the M1-8 screen all wait on D-004 (and D-005 for email). Nothing broken.
 - 2026-10-21 Live session (Joseph approved D-003): M1-4 done (four reversible migrations, 17 tables, RLS; 40 DB tests incl. second-brokerage invisibility, downward-only authority, sales restrictions, append-only audit, reparenting), M1-9 seed done, M1-8 offboarding service done. CLAUDE.md platform-global list updated per D-003 Q1. Broke main for about two minutes (a typecheck error slipped past a piped check in the M1-9 commit); fixed in the next commit, CI green again. Gate commands now run with pipefail. Next: M1-7 impersonation service layer; then M1-5 once D-004 lands. D-004, D-005, D-007 still PENDING.
 - 2026-10-21 Build run 2: no unblocked work. M1-4 through M1-9 all wait on D-003 (and D-004, D-005). Checked main: lint, typecheck, 45 tests, build all pass. No reply from Joseph yet; WAITING email for D-003 already sent today, so none sent. Next: M1-4 migrations once D-003 is APPROVED. Nothing broken.
