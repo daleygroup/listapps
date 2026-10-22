@@ -13,6 +13,8 @@ import type { MembershipRole } from "@/lib/resolvers";
  */
 export interface RosterPerson {
   membershipId: string;
+  /** Null for an invitation not yet accepted. */
+  userId: string | null;
   name: string;
   email: string;
   role: MembershipRole;
@@ -48,7 +50,7 @@ export async function listManagedRosters(
     if (accounts.length === 0) return [];
 
     const rows = await tx<(RosterPerson & { accountId: string })[]>`
-      select m.id as "membershipId", m.account_id as "accountId",
+      select m.id as "membershipId", m.account_id as "accountId", m.user_id as "userId",
              coalesce(nullif(u.full_name, ''), u.email::text, m.invited_email::text, '') as name,
              coalesce(u.email::text, m.invited_email::text, '') as email,
              m.role, m.is_broker_of_record as "isBrokerOfRecord", m.status,
@@ -73,6 +75,7 @@ export async function listManagedRosters(
 function toPerson(row: RosterPerson & { accountId: string }): RosterPerson {
   return {
     membershipId: row.membershipId,
+    userId: row.userId,
     name: row.name,
     email: row.email,
     role: row.role,

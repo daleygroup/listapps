@@ -3,11 +3,13 @@ import { getAuthUser } from "@/lib/auth/supabase-server";
 import { getServerSql } from "@/lib/db/server";
 import { inviteStatusLabel, roleLabel } from "@/lib/services/roster-view";
 import { listManagedRosters } from "@/lib/services/team-roster";
+import { RemoveMemberForm } from "./offboarding-forms";
 
 /**
  * Settings > People: who is in each office or team the signed-in person
- * manages, and open invitations. Read-only for now; the invite form waits on
- * D-005 (email) and D-009. Shows nothing useful until D-004.
+ * manages, and open invitations, with a guarded "Remove" for active members
+ * (starts offboarding). The invite form waits on D-005 (email) and D-009.
+ * Shows nothing useful until D-004.
  */
 export async function PeopleSection() {
   await connection();
@@ -44,6 +46,13 @@ export async function PeopleSection() {
                   </span>
                   {invite ? (
                     <span className="text-sm text-ink-muted">{invite}</span>
+                  ) : null}
+                  {p.status === "active" && p.userId !== user.id ? (
+                    <RemoveMemberForm
+                      membershipId={p.membershipId}
+                      name={p.name}
+                      accountName={r.name}
+                    />
                   ) : null}
                 </li>
               );

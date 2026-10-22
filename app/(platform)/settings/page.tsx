@@ -1,4 +1,5 @@
 import { Suspense } from "react";
+import { HandOffsSection } from "@/components/settings/hand-offs-section";
 import { PeopleSection } from "@/components/settings/people-section";
 
 export default function SettingsPage() {
@@ -11,6 +12,19 @@ export default function SettingsPage() {
         </h2>
         <Suspense fallback={<p className="text-ink-muted">Loading people…</p>}>
           <PeopleSection />
+        </Suspense>
+      </section>
+      <section
+        aria-labelledby="hand-offs-heading"
+        className="flex flex-col gap-3"
+      >
+        <h2 id="hand-offs-heading" className="text-lg font-semibold">
+          Hand-offs
+        </h2>
+        <Suspense
+          fallback={<p className="text-ink-muted">Loading hand-offs…</p>}
+        >
+          <HandOffsSection />
         </Suspense>
       </section>
     </main>

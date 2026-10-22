@@ -46,6 +46,10 @@ export async function removeMembership(
     if (!m) throw new OffboardingError("Membership not found");
     if (m.status === "removed")
       throw new OffboardingError("Membership is already removed");
+    if (m.user_id === input.actorUserId)
+      throw new OffboardingError(
+        "You cannot remove yourself. Ask someone above you to do it.",
+      );
     const [{ allowed }] = await tx<{ allowed: boolean }[]>`
       select app_private.has_permission(${m.account_id}, 'members.manage') as allowed`;
     if (!allowed)
