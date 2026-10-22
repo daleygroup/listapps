@@ -205,6 +205,8 @@ describe("impersonation", () => {
       toEmail: "agent@example.test",
       toName: "Avery Agent",
       staffName: "Sam Support",
+      reason: "Ticket 42: listing not showing",
+      elevatedReason: "Agent asked us to fix the address",
       actionCount: 4,
     });
     await markNoticeSent(sql, s.id);

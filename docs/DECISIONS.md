@@ -68,3 +68,23 @@ Format: ID, status, date, the question in plain language, options, recommendatio
 - **Option B:** no, links only ever go out by email. Simplest story, but nobody can join until D-005 is done.
 - **Recommendation:** A. It removes D-005 from the demo's critical path at no real risk, given D-008.
 - **Joseph's answer:** (waiting)
+
+## D-010 Wording of the "ListApps support viewed your account" email
+- **Status:** PENDING (not blocking; nothing is sent until D-005, and the draft is already built so only the words change)
+- **Question:** When ListApps staff view someone's account, that person is emailed afterward (required by CLAUDE.md). Is this wording right? It is the first customer-facing email the platform sends.
+- **Draft subject:** "ListApps support viewed your account" (or "ListApps support viewed and was allowed to change your account" if the session ever had permission to make changes)
+- **Draft body:**
+  - Hi Avery,
+  - Sam Support from ListApps support viewed your ListApps account on Thursday, October 22, 2026, from 9:05 AM CDT to 9:40 AM CDT.
+  - Reason given: Ticket 42: listing not showing
+  - This was view only. Nothing in your account could be changed. (Or, if changes were allowed: "For part of this session they were allowed to make changes. Reason given for that: ... Every change is recorded.")
+  - 3 actions were logged during the session.
+  - ListApps staff can never export your contacts, change your password or email address, change your billing, or delete anything in your account.
+  - If you did not expect this, contact ListApps support and we will walk you through exactly what was viewed.
+  - ListApps
+- **Sub-questions:**
+  - Q1: Show the person the staff member's stated reason? Recommendation: yes. It is the most reassuring line in the email, and it makes staff write good reasons.
+  - Q2: Show the staff member's real name, or just "ListApps support"? Recommendation: real name. It matches the promise that every access is accountable.
+  - Q3: Where does "contact ListApps support" point (a support email address, or replies to this email)? Needs an address once D-005 is set up. Recommendation: a support@ address on the same sending domain.
+- **Recommendation:** approve as drafted with Q1 and Q2 yes, and name the support address with D-005. Reply "D-010 approved" or send changes.
+- **Joseph's answer:** (waiting)

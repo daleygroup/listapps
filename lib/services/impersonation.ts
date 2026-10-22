@@ -388,6 +388,10 @@ export interface QueuedNotice {
   startedAt: Date;
   endedAt: Date;
   mode: ImpersonationMode;
+  /** The reason the staff member gave when starting the session. */
+  reason: string;
+  /** The reason given for elevating, if the session was ever elevated. */
+  elevatedReason: string | null;
   /** Number of actions logged during the session, refused ones included. */
   actionCount: number;
 }
@@ -403,12 +407,14 @@ export async function listQueuedNotices(sql: Sql): Promise<QueuedNotice[]> {
       started_at: Date;
       ended_at: Date;
       mode: ImpersonationMode;
+      reason: string;
+      elevated_reason: string | null;
       action_count: number;
     }[]
   >`
     select s.id, t.email::text as to_email, t.full_name as to_name,
            coalesce(st.full_name, 'ListApps support') as staff_name,
-           s.started_at, s.ended_at, s.mode,
+           s.started_at, s.ended_at, s.mode, s.reason, s.elevated_reason,
            (select count(*)::int from public.audit_logs a
              where a.impersonation_session_id = s.id
                and a.action in ('impersonation.action', 'impersonation.action_refused')) as action_count
@@ -425,6 +431,8 @@ export async function listQueuedNotices(sql: Sql): Promise<QueuedNotice[]> {
     startedAt: r.started_at,
     endedAt: r.ended_at,
     mode: r.mode,
+    reason: r.reason,
+    elevatedReason: r.elevated_reason,
     actionCount: r.action_count,
   }));
 }
