@@ -66,4 +66,49 @@ describe("resolveShellView", () => {
     expect(view.userName).toBe("Real Person");
     expect(view.accountName).toBe("Sample Team");
   });
+
+  it("shows the impersonated person's shell, read as the staff member, while a session is live", async () => {
+    const loadForUser = vi.fn(async (_reader: string, viewAs?: string) => {
+      const id = viewAs ?? "nope";
+      return {
+        ...shellFixture,
+        users: [{ id, fullName: "Impersonated Agent" }],
+        memberships: shellFixture.memberships.map((m) => ({
+          ...m,
+          userId: id,
+        })),
+      };
+    });
+    const view = await resolveShellView(
+      deps({
+        getUser: async () => ({ id: "staff1", email: "staff@example.test" }),
+        getViewAs: async () => ({ targetUserId: "agent9" }),
+        loadForUser,
+      }),
+    );
+    expect(loadForUser).toHaveBeenCalledWith("staff1", "agent9");
+    expect(view.userName).toBe("Impersonated Agent");
+    expect(view.accountName).toBe("Sample Team");
+  });
+
+  it("never falls back to the staff member's own shell when the impersonated person has no data", async () => {
+    const loadForUser = vi.fn(async (_reader: string, viewAs?: string) =>
+      viewAs ? null : shellFixture,
+    );
+    const view = await resolveShellView(
+      deps({
+        getUser: async () => ({ id: "staff1", email: "staff@example.test" }),
+        getViewAs: async () => ({ targetUserId: "agent9" }),
+        loadForUser,
+      }),
+    );
+    expect(view).toEqual(EMPTY_SHELL_VIEW);
+    expect(loadForUser).toHaveBeenCalledTimes(1);
+  });
+
+  it("shows the person's own shell when there is no live session", async () => {
+    const loadForUser = vi.fn(async () => null);
+    await resolveShellView(deps({ getViewAs: async () => null, loadForUser }));
+    expect(loadForUser).toHaveBeenCalledWith("u1");
+  });
 });

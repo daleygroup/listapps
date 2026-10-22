@@ -12,18 +12,38 @@ import type { ShellDataSource } from "./app-shell";
  * Loads everything the app shell needs for one signed-in person, from the
  * database, as that person (Row Level Security applies to every read).
  *
- * The queries also filter to the person's own memberships explicitly, so a
+ * The queries also filter to one person's memberships explicitly, so a
  * platform staff member (who can read far more under RLS) still sees only
- * their own apps in the switcher. Seeing through someone else's eyes is the
- * impersonation feature's job, never the shell's.
+ * their own apps in the switcher.
+ *
+ * "View as" (impersonation): pass `viewAsUserId` to load the shell as another
+ * person sees it. Every read still runs as the signed-in reader, so RLS
+ * applies to them, and the load is refused unless the reader has a live
+ * impersonation session on exactly that person (checked again here, inside
+ * the same transaction, not only by the caller).
  *
  * Returns null when the person has no `users` row yet.
  */
+export class ViewAsRefusedError extends Error {}
+
 export async function loadShellDataSource(
   sql: Sql,
-  userId: string,
+  readerId: string,
+  options: { viewAsUserId?: string } = {},
 ): Promise<ShellDataSource | null> {
-  return withUser(sql, userId, async (tx) => {
+  const userId = options.viewAsUserId ?? readerId;
+  return withUser(sql, readerId, async (tx) => {
+    if (userId !== readerId) {
+      const live = await tx`
+        select 1 from public.impersonation_sessions
+        where staff_user_id = ${readerId} and target_user_id = ${userId}
+          and ended_at is null and expires_at > now()
+          and app_private.is_staff()`;
+      if (live.length === 0)
+        throw new ViewAsRefusedError(
+          "Viewing as another person needs a live impersonation session on them",
+        );
+    }
     const users = await tx<{ id: string; fullName: string }[]>`
       select id, coalesce(nullif(full_name, ''), email::text) as "fullName"
       from public.users where id = ${userId}`;

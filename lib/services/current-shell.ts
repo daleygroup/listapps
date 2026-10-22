@@ -7,6 +7,7 @@ import {
   SHELL_FIXTURE_USER_ID,
 } from "@/lib/fixtures/shell-fixture";
 import type { ShellView } from "./app-shell";
+import { getActiveSession } from "./impersonation";
 import { loadShellDataSource } from "./shell-data";
 import { resolveShellView } from "./shell-source";
 
@@ -15,7 +16,8 @@ const FIXTURE_NOW = new Date("2026-01-01T00:00:00Z");
 
 /**
  * The shell view for this request: real data for the signed-in person once
- * sign-in is set up (D-004), sample fixture data until then.
+ * sign-in is set up (D-004), sample fixture data until then. While a staff
+ * member is impersonating someone, the shell shows that person's view.
  * Call it per request (after `connection()`), never at build time.
  */
 export async function getCurrentShellView(): Promise<ShellView> {
@@ -27,9 +29,13 @@ export async function getCurrentShellView(): Promise<ShellView> {
       now: FIXTURE_NOW,
     },
     getUser: getAuthUser,
-    loadForUser: async (userId) => {
+    loadForUser: async (readerId, viewAsUserId) => {
       const sql = getServerSql();
-      return sql ? loadShellDataSource(sql, userId) : null;
+      return sql ? loadShellDataSource(sql, readerId, { viewAsUserId }) : null;
+    },
+    getViewAs: async (userId) => {
+      const sql = getServerSql();
+      return sql ? getActiveSession(sql, userId) : null;
     },
     now: () => new Date(),
   });

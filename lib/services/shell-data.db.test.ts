@@ -8,7 +8,8 @@ import {
 } from "@/lib/db/testing/local-postgres";
 import { installAuthStub } from "@/lib/db/testing/rls";
 import { getShellView } from "./app-shell";
-import { loadShellDataSource } from "./shell-data";
+import { endImpersonation, startImpersonation } from "./impersonation";
+import { loadShellDataSource, ViewAsRefusedError } from "./shell-data";
 
 let pg: LocalPostgres;
 let sql: Sql;
@@ -151,5 +152,48 @@ describe("loadShellDataSource (real-data app switcher)", () => {
 
   it("returns null for an id with no users row", async () => {
     expect(await loadShellDataSource(sql, uid(99))).toBeNull();
+  });
+});
+
+describe("loadShellDataSource view-as (staff impersonation)", () => {
+  it("is refused for staff with no live session on that person", async () => {
+    await expect(
+      loadShellDataSource(sql, STAFF, { viewAsUserId: TEAM_MEMBER }),
+    ).rejects.toBeInstanceOf(ViewAsRefusedError);
+  });
+
+  it("is refused for a customer, even one with authority over the person", async () => {
+    await expect(
+      loadShellDataSource(sql, TEAM_ADMIN, { viewAsUserId: TEAM_MEMBER }),
+    ).rejects.toBeInstanceOf(ViewAsRefusedError);
+  });
+
+  it("shows exactly the impersonated person's shell during a live session, and stops when it ends", async () => {
+    const session = await startImpersonation(sql, {
+      staffUserId: STAFF,
+      targetUserId: TEAM_MEMBER,
+      reason: "Checking app access for a support ticket",
+    });
+    const source = await loadShellDataSource(sql, STAFF, {
+      viewAsUserId: TEAM_MEMBER,
+    });
+    const view = getShellView(source!, TEAM_MEMBER, NOW);
+    expect(view.userName).toBe("Morgan Member");
+    expect(view.accountName).toBe("First Team");
+    expect(view.apps.map((a) => a.slug)).toEqual(["listvault", "curb"]);
+    // Nothing from the second brokerage leaks into the view.
+    expect(source!.accounts.map((a) => a.name)).not.toContain(
+      "Second Brokerage",
+    );
+
+    // The session is on TEAM_MEMBER only; it does not open anyone else.
+    await expect(
+      loadShellDataSource(sql, STAFF, { viewAsUserId: OTHER_AGENT }),
+    ).rejects.toBeInstanceOf(ViewAsRefusedError);
+
+    await endImpersonation(sql, { sessionId: session.id, staffUserId: STAFF });
+    await expect(
+      loadShellDataSource(sql, STAFF, { viewAsUserId: TEAM_MEMBER }),
+    ).rejects.toBeInstanceOf(ViewAsRefusedError);
   });
 });
