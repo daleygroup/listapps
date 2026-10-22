@@ -8,7 +8,7 @@ Add these to the build environment (never commit them):
 - `NEXT_PUBLIC_SUPABASE_ANON_KEY`: its anon (public) key
 - `SUPABASE_SERVICE_ROLE_KEY`: server-only, used for one thing: creating the sign-in for a new person who opened a valid invitation link (public sign-up is off)
 - `DATABASE_URL` and `LISTAPPS_DB_TARGET=development`: the development database connection the server uses for invitation lookups (the app refuses anything that looks like production)
-- `LISTAPPS_SITE_URL` (optional): the site address, for example `https://dev.listapps.co`, so emailed links always point there
+- `LISTAPPS_SITE_URL` (required for invitation emails): the site address, for example `https://dev.listapps.co`. Invitation links are built only from this value, never from the incoming request, so a forged request cannot put a working join link on someone else's domain. Without it, invitations are saved but not emailed.
 
 The service role key is never given a `NEXT_PUBLIC_` name. The app refuses to start if it is.
 

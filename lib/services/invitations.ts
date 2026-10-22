@@ -381,3 +381,51 @@ export async function acceptInvitation(
     return { membershipId: m.id, accountId: m.account_id };
   }) as Promise<{ membershipId: string; accountId: string }>;
 }
+
+export interface InvitationEmailContext {
+  email: string;
+  role: InviteRole;
+  expiresAt: Date;
+  accountName: string;
+  accountTimeZone: string | null;
+  inviterName: string | null;
+}
+
+/**
+ * What the invitation email needs, read as the person sending it so Row Level
+ * Security applies. Null when the invitation is not open or not visible to
+ * them. Never returns the token or its hash.
+ */
+export async function invitationEmailContext(
+  sql: Sql,
+  input: { membershipId: string; actorUserId: string },
+): Promise<InvitationEmailContext | null> {
+  return withUser(sql, input.actorUserId, async (tx) => {
+    const [row] = await tx<
+      {
+        email: string;
+        role: InviteRole;
+        expires_at: Date | null;
+        account_name: string;
+        timezone: string | null;
+        inviter_name: string | null;
+      }[]
+    >`
+      select m.invited_email::text as email, m.role, m.invite_expires_at as expires_at,
+             a.name as account_name, a.timezone,
+             (select coalesce(nullif(u.full_name, ''), u.email::text)
+                from public.users u where u.id = ${input.actorUserId}) as inviter_name
+      from public.account_memberships m
+      join public.accounts a on a.id = m.account_id
+      where m.id = ${input.membershipId} and m.status = 'invited'`;
+    if (!row || !row.expires_at) return null;
+    return {
+      email: row.email,
+      role: row.role,
+      expiresAt: row.expires_at,
+      accountName: row.account_name,
+      accountTimeZone: row.timezone,
+      inviterName: row.inviter_name,
+    };
+  });
+}

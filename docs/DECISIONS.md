@@ -88,3 +88,21 @@ Format: ID, status, date, the question in plain language, options, recommendatio
   - Q3: Where does "contact ListApps support" point (a support email address, or replies to this email)? Needs an address once D-005 is set up. Recommendation: a support@ address on the same sending domain.
 - **Recommendation:** approve as drafted with Q1 and Q2 yes, and name the support address with D-005. Reply "D-010 approved" or send changes.
 - **Joseph's answer:** (waiting)
+
+## D-011 Wording of the invitation email
+- **Status:** PENDING (not blocking; nothing is sent until D-005, and the draft is already built so only the words change)
+- **Question:** Is this the right wording for the email an agent gets when they are invited into an office or team? It is the first email most agents will ever get from ListApps.
+- **Draft subject:** "Olive Owner invited you to join The Daley Group on ListApps"
+- **Draft body:**
+  - Hi,
+  - Olive Owner invited you to join The Daley Group on ListApps as a member.
+  - Open this link to accept: (link)
+  - The link works once, only for this email address (agent@example.com), and expires Thursday, October 29 at 10:00 AM CDT.
+  - If this office has a policy on shared leads, you will see it before you join. Every contact you own stays yours if you ever leave.
+  - If you were not expecting this, you can ignore this email. Nobody joins anything unless you open the link and accept.
+  - ListApps
+- **Sub-questions:**
+  - Q1: Include the "every contact you own stays yours" promise in the invitation itself? Recommendation: yes. It is the product guarantee and the best first impression for an agent wary of a new platform.
+  - Q2: Greet by name? We usually do not know the invited person's name yet, so "Hi," is the honest default. Recommendation: keep "Hi,".
+- **Recommendation:** approve as drafted. Reply "D-011 approved" or send changes.
+- **Joseph's answer:** (waiting)

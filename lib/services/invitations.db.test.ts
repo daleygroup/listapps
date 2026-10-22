@@ -11,6 +11,7 @@ import {
   acceptInvitation,
   createInvitation,
   hashInviteToken,
+  invitationEmailContext,
   previewInvitation,
   resendInvitation,
   revokeInvitation,
@@ -354,6 +355,59 @@ describe("revoking", () => {
     expect(m.status).toBe("removed");
     expect(
       await previewInvitation(sql, { token: inv.token, now: NOW }),
+    ).toBeNull();
+  });
+});
+
+describe("invitation email context", () => {
+  it("gives the inviter what the email needs, never the token", async () => {
+    await sql`update public.users set full_name = 'Olive Owner' where id = ${OWNER}`;
+    const inv = await createInvitation(sql, {
+      accountId: team,
+      email: "context@example.test",
+      role: "admin",
+      actorUserId: OWNER,
+      now: NOW,
+    });
+    const ctx = await invitationEmailContext(sql, {
+      membershipId: inv.membershipId,
+      actorUserId: OWNER,
+    });
+    expect(ctx).toEqual({
+      email: "context@example.test",
+      role: "admin",
+      expiresAt: inv.expiresAt,
+      accountName: "Team One",
+      accountTimeZone: "America/Chicago",
+      inviterName: "Olive Owner",
+    });
+    expect(JSON.stringify(ctx)).not.toContain(inv.token);
+    expect(JSON.stringify(ctx)).not.toContain(hashInviteToken(inv.token));
+  });
+
+  it("shows nothing to someone in another brokerage, or once withdrawn", async () => {
+    const inv = await createInvitation(sql, {
+      accountId: team,
+      email: "context2@example.test",
+      role: "member",
+      actorUserId: OWNER,
+      now: NOW,
+    });
+    expect(
+      await invitationEmailContext(sql, {
+        membershipId: inv.membershipId,
+        actorUserId: OUTSIDER,
+      }),
+    ).toBeNull();
+    await revokeInvitation(sql, {
+      membershipId: inv.membershipId,
+      actorUserId: OWNER,
+    });
+    expect(
+      await invitationEmailContext(sql, {
+        membershipId: inv.membershipId,
+        actorUserId: OWNER,
+      }),
     ).toBeNull();
   });
 });

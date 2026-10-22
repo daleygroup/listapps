@@ -3,13 +3,15 @@ import { getAuthUser } from "@/lib/auth/supabase-server";
 import { getServerSql } from "@/lib/db/server";
 import { inviteStatusLabel, roleLabel } from "@/lib/services/roster-view";
 import { listManagedRosters } from "@/lib/services/team-roster";
+import { InviteForm, OpenInviteActions } from "./invite-forms";
 import { RemoveMemberForm } from "./offboarding-forms";
 
 /**
  * Settings > People: who is in each office or team the signed-in person
  * manages, and open invitations, with a guarded "Remove" for active members
- * (starts offboarding). The invite form waits on D-005 (email) and D-009.
- * Shows nothing useful until D-004.
+ * (starts offboarding), "Invite someone", and Resend or Withdraw on open
+ * invitations. Invitation emails go out once D-005 is set up; until then the
+ * inviter is told plainly that nothing was sent. Shows nothing until D-004.
  */
 export async function PeopleSection() {
   await connection();
@@ -54,10 +56,17 @@ export async function PeopleSection() {
                       accountName={r.name}
                     />
                   ) : null}
+                  {p.status === "invited" ? (
+                    <OpenInviteActions
+                      membershipId={p.membershipId}
+                      email={p.email}
+                    />
+                  ) : null}
                 </li>
               );
             })}
           </ul>
+          <InviteForm accountId={r.accountId} accountName={r.name} />
         </section>
       ))}
     </div>
