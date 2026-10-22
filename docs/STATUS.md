@@ -4,7 +4,7 @@ Every run reads this first and updates it last. Keep it short and current.
 
 **Current milestone:** 1, "Who You Are" (Milestone 0 foundation done 2026-10-21)
 **Real-build target:** eight-step demo loop on real data, about mid-December 2026 (see CLAUDE.md 0a)
-**Last updated:** 2026-10-22 by background build run 11
+**Last updated:** 2026-10-22 by background build run 12
 
 ---
 
@@ -68,6 +68,7 @@ Every run reads this first and updates it last. Keep it short and current.
 ---
 
 ## Run log (newest first)
+- 2026-10-22 Build run 12: no unblocked work, same as run 11. DECISIONS.md unchanged (D-004, D-005, D-009 still PENDING) and no reply from Joseph in email. Checked main: lint, typecheck, 126 unit tests, build all pass. No WAITING email sent: today's 7 AM digest (12:00 UTC) already told Joseph the build is stalled on D-004/D-005. Next: M1-5 verification the moment D-004 lands. Nothing broken.
 - 2026-10-22 Build run 11: no unblocked work. Every open Milestone 1 task waits on D-004 (development database), D-005 (email service) or D-009 (copy-link fallback); the Milestone 2 proposal waits on Milestone 1 being verified. Checked main: lint, typecheck, 126 unit tests, build all pass. No reply from Joseph in email. No WAITING email sent (today's 7 AM digest already repeats D-004/D-005). Next: M1-5 verification the moment D-004 lands. Nothing broken.
 - 2026-10-22 Build run 10: M1-6 invite form done and dormant until D-004 (Invite someone, Resend, Withdraw in Settings > People). Invitation email drafted and built, D-011 added for its wording. Provider-neutral mailer seam sends nothing until D-005 and the inviter is told so; emailed links use only the pinned site address (blocks Host-header link spoofing). 16 unit tests, 2 DB tests. All gates green (126 unit, 101 DB, lint, format, typecheck, build). Next: nothing in Milestone 1 is buildable without D-004, D-005, or D-009. No email sent (D-004/D-005 WAITING sent 2026-10-21 12:27 UTC, under 24 hours ago; the 7 AM digest repeats it). Nothing broken.
 - 2026-10-22 Build run 9: M1-7 "view as" done and dormant until D-004 (shell shows the impersonated person's apps during a live staff session; refused for customers, for staff without a session, for anyone other than the session's person, and after the session ends; 3 DB tests, 3 unit tests). Drafted the notice email to the impersonated person and added D-010 for its wording (6 unit tests; notices now carry the stated reasons). All gates green. Next: nothing in Milestone 1 is buildable without D-004 (verify sign-in and screens), D-005 or D-009 (invite form, sending). No email sent (WAITING for D-004/D-005 already sent 2026-10-21; the 7 AM digest repeats it). Nothing broken.
