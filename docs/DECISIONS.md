@@ -60,3 +60,11 @@ Format: ID, status, date, the question in plain language, options, recommendatio
 - **Option B:** anyone signed in who holds the link can accept it. Fewer support calls, but a forwarded or leaked link lets the wrong person into an office's data.
 - **Recommendation:** A. It costs an occasional resend and protects every office's data.
 - **Joseph's answer:** (waiting)
+
+## D-009 Until invitation email is set up, may the inviter copy the link and send it themselves?
+- **Status:** PENDING (not blocking other work; only matters if D-005 is not done before the demo office is set up)
+- **Question:** Invitation emails need the email service (D-005). Until then, should the "invite someone" screen show the inviter the one-time join link so they can text or email it to the agent themselves?
+- **Option A:** yes, show a "copy link" button after inviting, and also once D-005 is live as a backup. Safe because the link only works for the exact email it was sent to (D-008), expires in 7 days, and works once. Lets the demo office be set up even if email is late.
+- **Option B:** no, links only ever go out by email. Simplest story, but nobody can join until D-005 is done.
+- **Recommendation:** A. It removes D-005 from the demo's critical path at no real risk, given D-008.
+- **Joseph's answer:** (waiting)
