@@ -30,6 +30,7 @@ Format: ID, status, date, the question in plain language, options, recommendatio
 - **Question:** Background runs test against a throwaway database inside each run. To test real logins, they need the `listapps-development` Supabase project. Has it been created?
 - **Options:** (a) Joseph creates `listapps-development` in Supabase (free tier) and adds its URL and keys to the scheduled build task's environment; (b) keep testing locally only until Milestone 1 tables are approved, then decide.
 - **Recommendation:** (b) now, (a) by the time D-003 is approved. Never production.
+- **Progress (2026-10-29, run 64):** a Supabase email to Joseph shows `listapps-development` exists (ID tywrremkivggoigafsoq) and is flagged for pausing because nothing uses it. Its URL and keys are still not in the build environment, so this stays PENDING. Recommendation: do not upgrade to Pro; a pause is free to undo within 90 days and daily build use will keep it active.
 
 ## D-005 Email service for invitations and impersonation notices
 - **Status:** PENDING
