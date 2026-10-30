@@ -4,7 +4,7 @@ Every run reads this first and updates it last. Keep it short and current.
 
 **Current milestone:** 1, "Who You Are" (Milestone 0 foundation done 2026-10-21)
 **Real-build target:** eight-step demo loop on real data, about mid-December 2026 (see CLAUDE.md 0a)
-**Last updated:** 2026-10-30 by background build run 71
+**Last updated:** 2026-10-30 by background build run 72
 
 ---
 
@@ -37,7 +37,7 @@ Every run reads this first and updates it last. Keep it short and current.
 ---
 
 ## Waiting on Joseph
-- **D-004: the `listapps-development` Supabase project now exists (Supabase says it will pause it for inactivity); add its URL and keys to the build environment.** This now blocks real logins (M1-5) and every screen after it.
+- **D-004: the `listapps-development` Supabase project exists but Supabase PAUSED it on 2026-10-30 for inactivity (free to unpause from the dashboard within 90 days). Unpause it, then add its URL and keys to the build environment.** This now blocks real logins (M1-5) and every screen after it.
 - **D-005: the email service** (Resend recommended). Joseph creates the account; runs never do.
 - D-004 Supabase `listapps-development` project credentials for hosted runs
 - D-005 Email sending service for invitations (Resend recommended)
@@ -68,6 +68,7 @@ Every run reads this first and updates it last. Keep it short and current.
 ---
 
 ## Run log (newest first)
+- 2026-10-30 Build run 72: no unblocked work. New: Supabase paused `listapps-development` (03:17 UTC); recorded under D-004. No email sent (run 64's WAITING for the same D-004 blocker was under 24 hours old; the 7 AM digest repeats it). Main green (lint, typecheck, 126 unit tests, build). Next: M1-5 verification once Joseph unpauses the project and adds the D-004 variables. Nothing broken.
 - 2026-10-29 to 2026-10-30 Build runs 66 to 71: no unblocked work. DECISIONS.md unchanged, D-004 variables still not in the build environment, no reply in Gmail to run 64's WAITING email (under 24 hours old, so none sent). Main green (lint, typecheck, 126 unit tests, build) as of run 71, 2026-10-30 00:20 UTC. Next: M1-5 verification once D-004 lands. Nothing broken.
 - 2026-10-29 Build run 64: no unblocked work. Found a Supabase email saying `listapps-development` exists but will be paused for inactivity; its keys are still not in the build environment. Sent one WAITING email asking for the four D-004 variables (recommended no Pro upgrade; a pause is free to undo). Main green (lint, typecheck, 126 unit tests, build). Next: M1-5 verification once D-004 variables land. Nothing broken.
 - 2026-10-22 to 2026-10-29 Build runs 11 to 63: no unblocked work. DECISIONS.md unchanged (D-004, D-005, D-009 still PENDING), no D-004 credentials, no reply from Joseph. Every run found main green (lint, typecheck, 126 unit tests, build). Run 14 sent one WAITING email for D-004, D-005, D-009 (2026-10-22 21:21 UTC); later runs left repeats to the 7 AM digest (latest 2026-10-25; no reply in Gmail as of run 55, 2026-10-28; run 56 could not check Gmail (quota error); runs 57 to 63 and 65 found no reply as of 2026-10-29 (run 63 checked Gmail: only the daily digests), no email needed; the daily digest already lists the blockers). Next: M1-5 verification the moment D-004 lands. Nothing broken.
