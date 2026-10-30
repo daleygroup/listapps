@@ -4,7 +4,7 @@ Every run reads this first and updates it last. Keep it short and current.
 
 **Current milestone:** 1, "Who You Are" (Milestone 0 foundation done 2026-10-21)
 **Real-build target:** eight-step demo loop on real data, about mid-December 2026 (see CLAUDE.md 0a)
-**Last updated:** 2026-10-29 by background build run 70
+**Last updated:** 2026-10-30 by background build run 71
 
 ---
 
@@ -68,7 +68,7 @@ Every run reads this first and updates it last. Keep it short and current.
 ---
 
 ## Run log (newest first)
-- 2026-10-29 Build runs 66 to 70: no unblocked work. DECISIONS.md unchanged, D-004 variables still not in the build environment, no reply in Gmail to run 64's WAITING email (under 24 hours old, so none sent). Main green (lint, typecheck, 126 unit tests, build) as of run 70, 21:20 UTC. Next: M1-5 verification once D-004 lands. Nothing broken.
+- 2026-10-29 to 2026-10-30 Build runs 66 to 71: no unblocked work. DECISIONS.md unchanged, D-004 variables still not in the build environment, no reply in Gmail to run 64's WAITING email (under 24 hours old, so none sent). Main green (lint, typecheck, 126 unit tests, build) as of run 71, 2026-10-30 00:20 UTC. Next: M1-5 verification once D-004 lands. Nothing broken.
 - 2026-10-29 Build run 64: no unblocked work. Found a Supabase email saying `listapps-development` exists but will be paused for inactivity; its keys are still not in the build environment. Sent one WAITING email asking for the four D-004 variables (recommended no Pro upgrade; a pause is free to undo). Main green (lint, typecheck, 126 unit tests, build). Next: M1-5 verification once D-004 variables land. Nothing broken.
 - 2026-10-22 to 2026-10-29 Build runs 11 to 63: no unblocked work. DECISIONS.md unchanged (D-004, D-005, D-009 still PENDING), no D-004 credentials, no reply from Joseph. Every run found main green (lint, typecheck, 126 unit tests, build). Run 14 sent one WAITING email for D-004, D-005, D-009 (2026-10-22 21:21 UTC); later runs left repeats to the 7 AM digest (latest 2026-10-25; no reply in Gmail as of run 55, 2026-10-28; run 56 could not check Gmail (quota error); runs 57 to 63 and 65 found no reply as of 2026-10-29 (run 63 checked Gmail: only the daily digests), no email needed; the daily digest already lists the blockers). Next: M1-5 verification the moment D-004 lands. Nothing broken.
 - 2026-10-22 Build run 10: M1-6 invite form done and dormant until D-004 (Invite someone, Resend, Withdraw in Settings > People). Invitation email drafted and built, D-011 added for its wording. Provider-neutral mailer seam sends nothing until D-005 and the inviter is told so; emailed links use only the pinned site address (blocks Host-header link spoofing). 16 unit tests, 2 DB tests. All gates green (126 unit, 101 DB, lint, format, typecheck, build). Next: nothing in Milestone 1 is buildable without D-004, D-005, or D-009. No email sent (D-004/D-005 WAITING sent 2026-10-21 12:27 UTC, under 24 hours ago; the 7 AM digest repeats it). Nothing broken.
