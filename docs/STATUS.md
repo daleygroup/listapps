@@ -4,7 +4,7 @@ Every run reads this first and updates it last. Keep it short and current.
 
 **Current milestone:** 1, "Who You Are" (Milestone 0 foundation done 2026-10-21)
 **Real-build target:** eight-step demo loop on real data, about mid-December 2026 (see CLAUDE.md 0a)
-**Last updated:** 2026-11-03 by background build run 107
+**Last updated:** 2026-11-03 by background build run 108
 
 ---
 
@@ -68,7 +68,7 @@ Every run reads this first and updates it last. Keep it short and current.
 ---
 
 ## Run log (newest first)
-- 2026-11-02 to 2026-11-03 Build runs 99 to 107 (latest run 107, 2026-11-03 13:2x UTC): no unblocked work. D-004 variables still not in the build environment, DECISIONS.md unchanged, no reply in Gmail to run 98's WAITING email (about 27 hours old; blocker unchanged and today's 7 AM digest repeats it, so none sent). Main green (lint, typecheck, 126 unit tests, build) as of run 107; no code commits since. Next: M1-5 verification once D-004 lands. Nothing broken.
+- 2026-11-02 to 2026-11-03 Build runs 99 to 108 (latest run 108, 2026-11-03 16:2x UTC): no unblocked work. D-004 variables still not in the build environment, DECISIONS.md unchanged, no reply in Gmail to run 98's WAITING email (about 30 hours old; blocker unchanged and today's 7 AM digest repeats it, so none sent). Main green (lint, typecheck, 126 unit tests, build) as of run 108; no code commits since. Next: M1-5 verification once D-004 lands. Nothing broken.
 - 2026-11-02 Build run 98: no unblocked work. D-004 variables still not in the build environment, DECISIONS.md unchanged, no reply in Gmail. Last WAITING email was run 73 (2026-10-30), over 24 hours old, so sent one WAITING email (10:2x UTC) asking Joseph to unpause `listapps-development` and add the D-004 variables (docs/AUTH-SETUP.md also lists `LISTAPPS_SITE_URL` for invitation links). Main green (lint, typecheck, 126 unit tests, build). Next: M1-5 verification once D-004 lands. Nothing broken.
 - 2026-10-30 to 2026-11-02 Build runs 74 to 97: no unblocked work. D-004 variables still not in the build environment, DECISIONS.md unchanged, no reply in Gmail to run 73's WAITING email. Run 81 (06:2x UTC) found that email about 24 hours old but the blocker unchanged and the 7 AM digest repeating it, so sent no new email. Runs 82 to 97 (through 2026-11-02 07:3x UTC) checked Gmail again: no reply, blocker unchanged, no new email (the 7 AM digest repeats it). Main green (lint, typecheck, 126 unit tests, build) as of run 97, 2026-11-02. Next: M1-5 verification once Joseph unpauses `listapps-development` and adds the D-004 variables. Nothing broken.
 - 2026-10-30 Build run 73: no unblocked work. D-004 variables still not in the build environment, DECISIONS.md unchanged, no reply to run 64's WAITING email. Run 64's email was over 24 hours old and the blocker has changed (project now paused), so sent one WAITING email (06:2x UTC) asking Joseph to unpause `listapps-development` and add the four D-004 variables. Main green (lint, typecheck, 126 unit tests, build). Next: M1-5 verification once D-004 lands. Nothing broken.
