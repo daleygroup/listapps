@@ -4,7 +4,7 @@ Every run reads this first and updates it last. Keep it short and current.
 
 **Current milestone:** 1, "Who You Are" (Milestone 0 foundation done 2026-10-21)
 **Real-build target:** eight-step demo loop on real data, about mid-December 2026 (see CLAUDE.md 0a)
-**Last updated:** 2026-11-09 by background build run 154
+**Last updated:** 2026-11-09 by background build run 155
 
 ---
 
@@ -68,6 +68,7 @@ Every run reads this first and updates it last. Keep it short and current.
 ---
 
 ## Run log (newest first)
+- 2026-11-09 Build run 155 (13:2x UTC): no unblocked work. D-004 variables still not in the build environment, DECISIONS.md unchanged, no reply in Gmail. Run 154's WAITING email (10:21 UTC) is under 24 hours old, so none sent. Main green (lint, typecheck, 126 unit tests, build). Next: M1-5 verification once D-004 lands. Nothing broken.
 - 2026-11-09 Build run 154 (10:2x UTC): no unblocked work. D-004 variables still not in the build environment, DECISIONS.md unchanged, no reply in Gmail. Run 146's WAITING email (2026-11-08 10:21 UTC) passed 24 hours during this run, so sent one WAITING email for D-004 (optionally D-005, D-009). Main green (lint, typecheck, 126 unit tests, build). Next: M1-5 verification once D-004 lands. Nothing broken.
 - 2026-11-08 to 2026-11-09 Build runs 147 to 153 (latest run 153, 2026-11-09 07:2x UTC): no unblocked work. D-004 variables still not in the build environment, DECISIONS.md unchanged, no reply in Gmail. Run 146's WAITING email (2026-11-08 10:21 UTC) is under 24 hours old, so none sent (the 7 AM digest repeats it). Main green (lint, typecheck, 126 unit tests, build). Next: M1-5 verification once D-004 lands. Nothing broken.
 - 2026-11-08 Build run 146 (10:2x UTC): no unblocked work. D-004 variables still not in the build environment, DECISIONS.md unchanged, no reply in Gmail. Run 137's WAITING email was just over 24 hours old, so sent one WAITING email for D-004 (optionally D-005, D-009). Main green (lint, typecheck, 126 unit tests, build). Next: M1-5 verification once D-004 lands. Nothing broken.
