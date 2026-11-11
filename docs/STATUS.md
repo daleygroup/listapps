@@ -4,7 +4,7 @@ Every run reads this first and updates it last. Keep it short and current.
 
 **Current milestone:** 1, "Who You Are" (Milestone 0 foundation done 2026-10-21)
 **Real-build target:** eight-step demo loop on real data, about mid-December 2026 (see CLAUDE.md 0a)
-**Last updated:** 2026-11-11 by background build run 171
+**Last updated:** 2026-11-11 by background build run 172
 
 ---
 
@@ -68,6 +68,7 @@ Every run reads this first and updates it last. Keep it short and current.
 ---
 
 ## Run log (newest first)
+- 2026-11-11 Build run 172 (16:2x UTC): no unblocked work. D-004 variables still not in the build environment, DECISIONS.md unchanged, no reply in Gmail. Run 163's WAITING email was about 27 hours old, so sent one WAITING email for D-004 (optionally D-005, D-009). Main green (lint, typecheck, 126 unit tests, build). Next: M1-5 verification once D-004 lands. Nothing broken.
 - 2026-11-10 to 2026-11-11 Build runs 163 to 171 (latest run 171, 2026-11-11 13:1x UTC): no unblocked work. D-004 variables still not in the build environment, DECISIONS.md unchanged, no reply in Gmail. Run 154's WAITING email was about 27 hours old, so run 163 sent one WAITING email for D-004 (optionally D-005, D-009) at 13:20 UTC; runs 164 to 171 sent none (still under 24 hours old at run 171; today's 7 AM digest, sent 12:59 UTC, repeats it). Main green (lint, typecheck, 126 unit tests, build). Next: M1-5 verification once D-004 lands. Nothing broken.
 - 2026-11-09 to 2026-11-10 Build runs 154 to 162 (latest run 162, 2026-11-10 10:2x UTC): no unblocked work. D-004 variables still not in the build environment, DECISIONS.md unchanged, no reply in Gmail. Run 154 sent one WAITING email for D-004 (optionally D-005, D-009) at 2026-11-09 10:21 UTC; runs 155 to 162 sent none (under 24 hours old; the 7 AM digest repeats it; Joseph's out-of-office auto-reply on since 2026-11-07). Main green (lint, typecheck, 126 unit tests, build). Next: M1-5 verification once D-004 lands. Nothing broken.
 - 2026-11-08 to 2026-11-09 Build runs 147 to 153 (latest run 153, 2026-11-09 07:2x UTC): no unblocked work. D-004 variables still not in the build environment, DECISIONS.md unchanged, no reply in Gmail. Run 146's WAITING email (2026-11-08 10:21 UTC) is under 24 hours old, so none sent (the 7 AM digest repeats it). Main green (lint, typecheck, 126 unit tests, build). Next: M1-5 verification once D-004 lands. Nothing broken.
