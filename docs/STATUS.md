@@ -4,7 +4,7 @@ Every run reads this first and updates it last. Keep it short and current.
 
 **Current milestone:** 1, "Who You Are" (Milestone 0 foundation done 2026-10-21)
 **Real-build target:** eight-step demo loop on real data, about mid-December 2026 (see CLAUDE.md 0a)
-**Last updated:** 2026-11-16 by background build run 213
+**Last updated:** 2026-11-16 by background build run 214
 
 ---
 
@@ -63,11 +63,13 @@ Every run reads this first and updates it last. Keep it short and current.
 - Auth: with no Supabase variables the proxy passes everything through and the auth pages say sign-in is not set up, so builds and CI need no secrets. The app refuses to start if a service role key has a `NEXT_PUBLIC_` name, or if the URL looks like production without an explicit override. Post-sign-in redirects accept same-site paths only. Recommended Supabase setting: public sign-ups off (invitation only), see docs/AUTH-SETUP.md.
 - Invitations: only a SHA-256 hash of the link token is stored; the raw token is returned once to the caller that sends the email. Links last 7 days by default (1 hour to 30 days allowed), are single-use, and resending replaces the old link. Accepting is the only server-privileged step and records the person as the audit actor. Invitation events are written right after the RLS-checked change commits (same two-step pattern as offboarding).
 - Invite accept page: the contact policy box shows the account's policy text verbatim plus the fixed promise "every contact you own stays yours if you ever leave". The policy values themselves are D-007. New-person sign-ins are created with the server-only `SUPABASE_SERVICE_ROLE_KEY` (see docs/AUTH-SETUP.md); the app's own database connection (`lib/db/server.ts`) uses `DATABASE_URL` and refuses production.
+- Next.js is pinned to an exact version. `next build` now refuses its first run when the installed version has a published advisory, so keep it on the latest patch (`pnpm audit --prod` shows it). Patch upgrades inside 16.x are technical and need no approval.
 - The clickable demo prototype for October 30 is built and published outside this repo. Do not build prototype screens here.
 
 ---
 
 ## Run log (newest first)
+- 2026-11-16 Build run 214 (22:2x UTC): security patch. `pnpm build` began failing on a clean checkout (it now stops on the first try when Next.js has a known advisory, which would fail CI): Next.js 16.4.2 was affected by GHSA-mfr8-8qww-v76h (moderate, information disclosure via `use cache` in `unstable_cache`; this app does not use either). Upgraded `next` and `eslint-config-next` to 16.4.6; `pnpm audit` clean. Main green (lint, typecheck, 126 unit tests, clean build). D-004 still missing, DECISIONS.md unchanged, no reply in Gmail; run 212's WAITING email is about 6 hours old, so none sent. Next: M1-5 verification once D-004 lands.
 - 2026-11-16 Build run 213 (19:2x UTC): no unblocked work. D-004 variables still not in the build environment, DECISIONS.md unchanged, no reply in Gmail. Run 212's WAITING email is about 3 hours old, so none sent. Main green (lint, typecheck, 126 unit tests, build; fresh container needed `pnpm install`). Next: M1-5 verification once D-004 lands. Nothing broken.
 - 2026-11-16 Build run 212 (16:2x UTC): no unblocked work. D-004 variables still not in the build environment, DECISIONS.md unchanged, no reply in Gmail. Run 203's WAITING email (2026-11-15 13:20 UTC) was about 27 hours old, so sent one WAITING email for D-004 (optionally D-005, D-009) at 16:2x UTC. Main green (lint, typecheck, 126 unit tests, build). Next: M1-5 verification once D-004 lands. Nothing broken.
 - 2026-11-14 to 2026-11-16 Build runs 192 to 211 (latest run 211, 2026-11-16 13:2x UTC): no unblocked work. D-004 variables still not in the build environment, DECISIONS.md unchanged, no reply in Gmail. Run 192 sent one WAITING email for D-004 at 2026-11-14 04:21 UTC; runs 193 to 202 sent none. Run 203 found it about 33 hours old, so sent one WAITING email for D-004 (optionally D-005, D-009) at 13:2x UTC; runs 204 to 211 found no reply and sent none (that email was still just under 24 hours old and unread at run 211, and today's 7 AM digest, 13:00 UTC, repeats it). Main green (lint, typecheck, 126 unit tests, build; fresh container needed `pnpm install` first). Next: M1-5 verification once D-004 lands. Nothing broken.
