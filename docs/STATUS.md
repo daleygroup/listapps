@@ -4,7 +4,7 @@ Every run reads this first and updates it last. Keep it short and current.
 
 **Current milestone:** 1, "Who You Are" (Milestone 0 foundation done 2026-10-21)
 **Real-build target:** eight-step demo loop on real data, about mid-December 2026 (see CLAUDE.md 0a)
-**Last updated:** 2026-11-17 by background build run 218
+**Last updated:** 2026-11-17 by background build run 219
 
 ---
 
@@ -69,7 +69,7 @@ Every run reads this first and updates it last. Keep it short and current.
 ---
 
 ## Run log (newest first)
-- 2026-11-17 Build runs 215 to 218 (latest run 218, 10:2x UTC): no unblocked work. D-004 variables still not in the build environment, DECISIONS.md unchanged, no reply in Gmail. Run 212's WAITING email (2026-11-16 16:20 UTC) is about 18 hours old and unread, so none sent (the 7 AM digest repeats it). Main green (lint, typecheck, 126 unit tests, build, `pnpm audit --prod` clean; fresh container needed `pnpm install`). Next: M1-5 verification once D-004 lands. Nothing broken.
+- 2026-11-17 Build runs 215 to 219 (latest run 219, 13:2x UTC): no unblocked work. D-004 variables still not in the build environment, DECISIONS.md unchanged, no reply in Gmail. Run 212's WAITING email (2026-11-16 16:20 UTC) is about 21 hours old and unread, so none sent (today's 7 AM digest, 12:59 UTC, repeats it). Main green (lint, typecheck, 126 unit tests, build, `pnpm audit --prod` clean; fresh container needed `pnpm install`). Next: M1-5 verification once D-004 lands. Nothing broken.
 - 2026-11-16 Build run 214 (22:2x UTC): security patch. `pnpm build` began failing on a clean checkout (it now stops on the first try when Next.js has a known advisory, which would fail CI): Next.js 16.4.2 was affected by GHSA-mfr8-8qww-v76h (moderate, information disclosure via `use cache` in `unstable_cache`; this app does not use either). Upgraded `next` and `eslint-config-next` to 16.4.6; `pnpm audit` clean. Main green (lint, typecheck, 126 unit tests, clean build). D-004 still missing, DECISIONS.md unchanged, no reply in Gmail; run 212's WAITING email is about 6 hours old, so none sent. Next: M1-5 verification once D-004 lands.
 - 2026-11-16 Build run 213 (19:2x UTC): no unblocked work. D-004 variables still not in the build environment, DECISIONS.md unchanged, no reply in Gmail. Run 212's WAITING email is about 3 hours old, so none sent. Main green (lint, typecheck, 126 unit tests, build; fresh container needed `pnpm install`). Next: M1-5 verification once D-004 lands. Nothing broken.
 - 2026-11-16 Build run 212 (16:2x UTC): no unblocked work. D-004 variables still not in the build environment, DECISIONS.md unchanged, no reply in Gmail. Run 203's WAITING email (2026-11-15 13:20 UTC) was about 27 hours old, so sent one WAITING email for D-004 (optionally D-005, D-009) at 16:2x UTC. Main green (lint, typecheck, 126 unit tests, build). Next: M1-5 verification once D-004 lands. Nothing broken.
