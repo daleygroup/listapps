@@ -4,7 +4,7 @@ Every run reads this first and updates it last. Keep it short and current.
 
 **Current milestone:** 1, "Who You Are" (Milestone 0 foundation done 2026-10-21)
 **Real-build target:** eight-step demo loop on real data, about mid-December 2026 (see CLAUDE.md 0a)
-**Last updated:** 2026-11-23 by background build run 265
+**Last updated:** 2026-11-23 by background build run 266
 
 ---
 
@@ -69,7 +69,7 @@ Every run reads this first and updates it last. Keep it short and current.
 ---
 
 ## Run log (newest first)
-- 2026-11-23 Build runs 263 to 265 (latest run 265, 07:2x UTC): no unblocked work. D-004 variables still missing, DECISIONS.md unchanged, no reply in Gmail; Supabase connector still unused (not approved). Run 257's WAITING email is still inside the 24-hour window, so none sent. Main green (lint, typecheck, 126 unit tests, build, audit clean; fresh container needed `pnpm install`). Next: M1-5 verification once D-004 lands. Nothing broken.
+- 2026-11-23 Build runs 263 to 266 (latest run 266, 10:2x UTC): no unblocked work. D-004 variables still missing, DECISIONS.md unchanged, no reply in Gmail; Supabase connector still unused (not approved). Run 257's WAITING email passed 24 hours, so run 266 sent one WAITING email for D-004 (optionally D-005, D-009). Main green (lint, typecheck, 126 unit tests, build, audit clean; fresh container needed `pnpm install`). Next: M1-5 verification once D-004 lands. Nothing broken.
 - 2026-11-22 Build runs 255 to 262 (latest run 262, 22:2x UTC): no unblocked work. D-004 variables still missing, no reply in Gmail. New: Supabase emailed at 17:59 UTC that a "Claude" app was authorized on the `listapps` organization; runs did not use it (not approved), recorded as D-004 option (c) in DECISIONS.md. Run 257 sent one WAITING email at about 07:2x UTC; runs 258 to 262 sent none since it is under 24 hours old. Main green (lint, typecheck, 126 unit tests, build, audit clean; fresh container needed `pnpm install`). Next: M1-5 verification once D-004 lands. Nothing broken.
 - 2026-11-21 Build runs 247 to 254 (latest run 254, 22:2x UTC): no unblocked work. D-004 variables still not in the build environment, DECISIONS.md unchanged, no reply in Gmail (only today's digest). Run 248 sent one WAITING email for D-004 (optionally D-005, D-009) at about 04:2x UTC; runs 249 to 254 sent none since it is under 24 hours old. Main green (lint, typecheck, 126 unit tests, build, `pnpm audit --prod` clean; fresh container needed `pnpm install`). Next: M1-5 verification once D-004 lands. Nothing broken.
 - 2026-11-20 Build runs 239 to 246 (latest run 246, 22:2x UTC): no unblocked work. D-004 variables still not in the build environment, DECISIONS.md unchanged, no reply in Gmail. Run 239 sent one WAITING email for D-004 (optionally D-005, D-009) at about 01:2x UTC; runs 240 to 246 sent none since that one is under 24 hours old. Main green (lint, typecheck, 126 unit tests, build, `pnpm audit --prod` clean; fresh container needed `pnpm install`). Next: M1-5 verification once D-004 lands. Nothing broken.
