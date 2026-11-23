@@ -37,9 +37,8 @@ Every run reads this first and updates it last. Keep it short and current.
 ---
 
 ## Waiting on Joseph
-- **D-004: the `listapps-development` Supabase project exists but Supabase PAUSED it on 2026-10-30 for inactivity (free to unpause from the dashboard within 90 days). Unpause it, then add its URL and keys to the build environment.** This now blocks real logins (M1-5) and every screen after it. New option (c): approve runs using the just-connected Supabase connector for development only (see D-004).
+- **D-004 APPROVED 2026-11-23, option (c): runs use the Supabase connector on `listapps-development` only. Project unpaused 2026-11-23.** Still needed from Joseph to run the app itself against it (the connector cannot read these): the database connection string (`DATABASE_URL`) and the `SUPABASE_SERVICE_ROLE_KEY`, added to the scheduled build task's environment. Until then runs can apply approved migrations, seed, and check RLS through the connector.
 - **D-005: the email service** (Resend recommended). Joseph creates the account; runs never do.
-- D-004 Supabase `listapps-development` project credentials for hosted runs
 - D-005 Email sending service for invitations (Resend recommended)
 - D-006 OHDibs non-renewal notice date
 - D-007 Default data policies when agents or teams leave (not blocking yet)
@@ -69,6 +68,7 @@ Every run reads this first and updates it last. Keep it short and current.
 ---
 
 ## Run log (newest first)
+- 2026-11-23 Live check-in after run 269: Joseph approved D-004 option (c) (connector, development only). `listapps-development` unpaused. Next: apply migrations 001+ and seed via the connector, then M1-5 verification; app-level login testing still needs `DATABASE_URL` and the service role key in the build environment.
 - 2026-11-23 Build runs 263 to 269 (latest run 269, evening UTC): no unblocked work. D-004 variables still missing, DECISIONS.md unchanged, no reply in Gmail; Supabase connector still unused (not approved). Run 257's WAITING email passed 24 hours, so run 266 sent one WAITING email for D-004 (optionally D-005, D-009); runs 267 to 269 sent none since it is under 24 hours old. Main green (lint, typecheck, 126 unit tests, build, audit clean; fresh container needed `pnpm install`). Next: M1-5 verification once D-004 lands. Nothing broken.
 - 2026-11-22 Build runs 255 to 262 (latest run 262, 22:2x UTC): no unblocked work. D-004 variables still missing, no reply in Gmail. New: Supabase emailed at 17:59 UTC that a "Claude" app was authorized on the `listapps` organization; runs did not use it (not approved), recorded as D-004 option (c) in DECISIONS.md. Run 257 sent one WAITING email at about 07:2x UTC; runs 258 to 262 sent none since it is under 24 hours old. Main green (lint, typecheck, 126 unit tests, build, audit clean; fresh container needed `pnpm install`). Next: M1-5 verification once D-004 lands. Nothing broken.
 - 2026-11-21 Build runs 247 to 254 (latest run 254, 22:2x UTC): no unblocked work. D-004 variables still not in the build environment, DECISIONS.md unchanged, no reply in Gmail (only today's digest). Run 248 sent one WAITING email for D-004 (optionally D-005, D-009) at about 04:2x UTC; runs 249 to 254 sent none since it is under 24 hours old. Main green (lint, typecheck, 126 unit tests, build, `pnpm audit --prod` clean; fresh container needed `pnpm install`). Next: M1-5 verification once D-004 lands. Nothing broken.
