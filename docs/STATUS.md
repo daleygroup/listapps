@@ -4,7 +4,7 @@ Every run reads this first and updates it last. Keep it short and current.
 
 **Current milestone:** 1, "Who You Are" (Milestone 0 foundation done 2026-10-21)
 **Real-build target:** eight-step demo loop on real data, about mid-December 2026 (see CLAUDE.md 0a)
-**Last updated:** 2026-11-23 by background build run 271
+**Last updated:** 2026-11-24 by background build run 272
 
 ---
 
@@ -69,6 +69,7 @@ Every run reads this first and updates it last. Keep it short and current.
 ---
 
 ## Run log (newest first)
+- 2026-11-24 Build run 272 (04:2x UTC): no unblocked work. Same blocker as runs 270 and 271: no `DATABASE_URL` in the build environment, DECISIONS.md unchanged, no reply to run 270's WAITING email (under 24 hours old, so none sent). Did not retry the connector migration. Main green (lint, typecheck, 126 unit tests, build, audit clean; fresh container needed `pnpm install`). Next: apply 0001 to 0004 and seed once Joseph approves in a live session or adds `DATABASE_URL`; then M1-5 verification. Nothing broken.
 - 2026-11-24 Build run 271 (01:2x UTC): no unblocked work. Same blocker as run 270: no `DATABASE_URL` in the build environment, DECISIONS.md unchanged, no reply to run 270's WAITING email (under 24 hours old, so none sent). Did not retry the connector migration that the permission guard refused. Main green (lint, typecheck, 126 unit tests, build, audit clean). Next: apply 0001 to 0004 and seed once Joseph approves in a live session or adds `DATABASE_URL`; then M1-5 verification. Nothing broken.
 - 2026-11-23 Build run 270 (16:2x UTC): picked "apply migrations and seed via the connector" (D-004 option c). `listapps-development` is ACTIVE_HEALTHY with an empty `public` schema. Applying 0001 through the connector was refused by the unattended session's permission guard; did not work around it. Sent one WAITING email for this new blocker. Main green (lint, typecheck, 126 unit tests, 101 DB tests locally, build, audit clean). Next: apply 0001 to 0004 and seed once Joseph approves in a live session or adds `DATABASE_URL`; then M1-5 verification. Nothing broken.
 - 2026-11-23 Live check-in after run 269: Joseph approved D-004 option (c) (connector, development only). `listapps-development` unpaused. Next: apply migrations 001+ and seed via the connector, then M1-5 verification; app-level login testing still needs `DATABASE_URL` and the service role key in the build environment.
