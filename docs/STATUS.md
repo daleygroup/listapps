@@ -4,7 +4,7 @@ Every run reads this first and updates it last. Keep it short and current.
 
 **Current milestone:** 1, "Who You Are" (Milestone 0 foundation done 2026-10-21)
 **Real-build target:** eight-step demo loop on real data, about mid-December 2026 (see CLAUDE.md 0a)
-**Last updated:** 2026-11-28 by background build run 303
+**Last updated:** 2026-11-28 by background build run 304
 
 ---
 
@@ -69,7 +69,7 @@ Every run reads this first and updates it last. Keep it short and current.
 ---
 
 ## Run log (newest first)
-- 2026-11-27 Build runs 298 to 303 (latest run 303, 2026-11-28 01:2x UTC): no unblocked work. Same blocker as run 270 (no `DATABASE_URL`, DECISIONS.md unchanged, no reply in Gmail). Run 297's WAITING email (07:2x UTC today) is under 24 hours old and today's digest repeats it, so none sent. Main green (lint, typecheck, 126 unit tests, build, audit clean; fresh container needed `pnpm install`). Next: apply 0001 to 0004 and seed once unblocked; then M1-5 verification. Nothing broken.
+- 2026-11-27 Build runs 298 to 304 (latest run 304, 2026-11-28 04:2x UTC): no unblocked work. Same blocker as run 270 (no `DATABASE_URL`, DECISIONS.md unchanged, no reply in Gmail). Run 297's WAITING email (07:2x UTC today) is under 24 hours old and today's digest repeats it, so none sent. Main green (lint, typecheck, 126 unit tests, build, audit clean; fresh container needed `pnpm install`). Next: apply 0001 to 0004 and seed once unblocked; then M1-5 verification. Nothing broken.
 - 2026-11-27 Build run 297 (07:2x UTC): no unblocked work. Same blocker as run 270 (no `DATABASE_URL`, DECISIONS.md unchanged, no reply in Gmail). Run 288's WAITING email (04:20 UTC 2026-11-26) was about 27 hours old, so sent one WAITING email (apply migrations in a live session, or add `DATABASE_URL` and the service role key). Main green (lint, typecheck, 126 unit tests, build, audit clean; fresh container needed `pnpm install`). Next: apply 0001 to 0004 and seed once unblocked; then M1-5 verification. Nothing broken.
 - 2026-11-26 Build runs 289 to 296 (latest run 296, 2026-11-27 04:2x UTC): no unblocked work. Same blocker as run 270 (no `DATABASE_URL`, DECISIONS.md unchanged, no reply in Gmail). Run 288's WAITING email (04:20 UTC 2026-11-26) was still just under 24 hours old at run 296 and today's digest repeats it, so none sent; the next run may send one if still blocked. Main green (lint, typecheck, 126 unit tests, build, audit clean; fresh container needed `pnpm install`). Next: apply 0001 to 0004 and seed once unblocked; then M1-5 verification. Nothing broken.
 - 2026-11-26 Build run 288 (04:2x UTC): no unblocked work. Same blocker as run 270 (no `DATABASE_URL`, DECISIONS.md unchanged, no reply in Gmail). Run 279's WAITING email was over 24 hours old, so sent one WAITING email (apply migrations in a live session, or add `DATABASE_URL` and the service role key). Main green (lint, typecheck, 126 unit tests, build, audit clean; fresh container needed `pnpm install`). Next: apply 0001 to 0004 and seed once unblocked; then M1-5 verification. Nothing broken.
